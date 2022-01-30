@@ -31,20 +31,20 @@ main() {
         .thenAnswer((_) async => http.Response('Something went wrong', 404));
   }
 
-  group('getContreteNumberTrivia', () {
+  group('getConcreteNumberTrivia', () {
     const tNumber = 1;
     final tNumberTriviaModel =
         NumberTriviaModel.fromJson(json.decode(fixture('trivia.json')));
 
     test('''should perform a get request on a URL with number
-        being the endpoint abd with application/json header''', () async {
+        being the endpoint and with application/json header''', () async {
       // arrange
       setUpMockHttClientSuccess200();
       // act
       datasource.getConcreteNumberTrivia(tNumber);
       // assert
       verify(mockHttpClient.get(
-        Uri.dataFromString('http://numbersapi/$tNumber'),
+        Uri.parse('http://numbersapi.com/$tNumber'),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -62,7 +62,7 @@ main() {
     });
 
     test(
-        'should throw a ServerException whne the response code is 4040 or other',
+        'should throw a ServerException when the response code is 4040 or other',
         () async {
       // arrange
       setUpMockHttClientFailure404();
@@ -79,14 +79,14 @@ main() {
         NumberTriviaModel.fromJson(json.decode(fixture('trivia.json')));
 
     test('''should perform a get request on a URL with number
-        being the endpoint abd with application/json header''', () async {
+        being the endpoint and with application/json header''', () async {
       // arrange
       setUpMockHttClientSuccess200();
       // act
       datasource.getRandomNumberTrivia();
       // assert
       verify(mockHttpClient.get(
-        Uri.dataFromString('http://numbersapi/random'),
+        Uri.parse('http://numbersapi.com/random'),
         headers: {
           'Content-Type': 'application/json',
         },

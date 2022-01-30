@@ -23,7 +23,7 @@ Future<void> init() async {
   // Use cased
   sl.registerLazySingleton(() => GetConcreteNumberTrivia(sl()));
   sl.registerLazySingleton(() => GetRandomNumberTrivia(sl()));
-  // Repositoru
+  // Repository
   sl.registerLazySingleton<NumberTriviaRepository>(
     () => NumberTriviaRepositoryImpl(
       localDataSource: sl(),
